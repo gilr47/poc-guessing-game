@@ -1,6 +1,7 @@
 {
 	"name": "@pocGuessingGame/common",
 	"private": true,
+	"main": "lib/index",
 	"scripts": {
 		"bootstrap": "lerna bootstrap --ignore-scripts"
 	},
