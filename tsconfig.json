@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "ES2020", // The spec version most compliant with our previous Node version (14.15.3) until we update all cloud resources to our current version (18.12.1)
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"resolveJsonModule": true,
+		"forceConsistentCasingInFileNames": true,
+		"noUnusedParameters": true,
+		"skipLibCheck": true,
+		"types": [
+			"node",
+			"jest"
+		],
+		"jsx": "react",
+	}
+}

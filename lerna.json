@@ -1,0 +1,39 @@
+{
+	"command": {
+		"changed": {
+			"includeMergedTags": true
+		},
+		"publish": {
+			"allowBranch": "main",
+			"includeMergedTags": true,
+			"graphType": "all"
+		},
+		"bootstrap": {
+			"hoist": true,
+			"npmClientArgs": [
+				"--legacy-peer-deps"
+			],
+			"rejectCycles": true,
+			"forceLocal": true,
+			"strict": true
+		},
+		"link": {
+			"rejectCycles": true,
+			"forceLocal": true,
+			"strict": true
+		},
+		"run": {
+			"rejectCycles": true,
+			"forceLocal": true,
+			"strict": true
+		}
+	},
+	"rejectCycles": true,
+	"strict": true,
+	"forceLocal": true,
+	"maxBuffer": 99999999,
+	"packages": [
+		"src/*"
+	],
+	"version": "0.0.1"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "root",
+	"private": true,
+	"scripts": {
+		"bootstrap": "lerna bootstrap --ignore-scripts"
+	},
+	"devDependencies": {
+		"husky": "^3.0.9",
+		"lerna": "^4.0.0",
+		"patch-package": "^6.4.7"
+	}
+}
