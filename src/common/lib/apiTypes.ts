@@ -10,7 +10,6 @@ export function guardStartSessionInput(data: any): data is StartSessionInput {
 
 export type StartSessionOutput = {
 	sessionId: string;
-	iterations: number;
 }
 
 export type ReportDataInput = {

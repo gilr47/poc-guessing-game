@@ -1,4 +1,3 @@
-import { APITypes,  } from "@pocGuessingGame/common";
 import express from "express";	
 import leaderboards from "./routes/leaderBoards";
 import reportData from "./routes/reportData";
