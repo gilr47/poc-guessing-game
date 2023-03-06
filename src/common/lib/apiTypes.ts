@@ -32,3 +32,9 @@ export type LeaderboardsInput = void;
 
 //A tuple of username and his/her score
 export type LeaderboardsOutput = [string, number][]
+
+export enum APIRoutes {
+	StartSession = "/startSession",
+	ReportData = "/reportData",
+	Leaderboards = "/leaderboards",
+};

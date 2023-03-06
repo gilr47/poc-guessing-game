@@ -3,15 +3,16 @@ import express from "express";
 import leaderboards from "./routes/leaderBoards";
 import reportData from "./routes/reportData";
 import startSession from "./routes/startSession";
+import { APIRoutes } from "@pocGuessingGame/common";
 
 const APP_PORT = 3000;
 
 export default function App() {
 	const jsonParserMiddleware = bodyParser.json({});
 	const app = express();
-	app.get("/StartSession", startSession);
-	app.post("/ReportData", jsonParserMiddleware, reportData);
-	app.get("/Leaderboards", leaderboards);
+	app.get(APIRoutes.StartSession, startSession);
+	app.post(APIRoutes.ReportData, jsonParserMiddleware, reportData);
+	app.get(APIRoutes.Leaderboards, leaderboards);
 	app.listen(APP_PORT, () => { 
 		console.log("Starting Service");
 	})

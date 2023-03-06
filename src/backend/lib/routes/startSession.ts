@@ -1,4 +1,4 @@
-import { guardStartSessionInput, StartSessionOutput } from "@pocGuessingGame/common/lib/apiTypes";
+import { guardStartSessionInput, APITypes } from "@pocGuessingGame/common";
 import { Request, Response } from "express";
 import SqlString from "sqlstring";
 import { getDBInstance, getValidDBUUID } from "../db/helpers";
@@ -15,7 +15,7 @@ export default async function startSession(req: Request, res: Response) {
 		if (err) {
 			res.status(500).json(INTERNAL_SERVER_ERROR);
 		} else {
-			const output: StartSessionOutput = {
+			const output: APITypes.StartSessionOutput = {
 				sessionId,
 			}; 
 			res.status(200).json(output);

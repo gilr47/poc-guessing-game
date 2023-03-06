@@ -1,4 +1,4 @@
-import { guardReportDataInput, ReportDataOutput } from "@pocGuessingGame/common/lib/apiTypes";
+import { guardReportDataInput } from "@pocGuessingGame/common";
 import { Request, Response } from "express";
 import SqlString from "sqlstring";
 import { getDBInstance } from "../db/helpers";
