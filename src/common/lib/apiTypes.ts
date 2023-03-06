@@ -21,7 +21,7 @@ export function guardReportDataInput(data: any): data is ReportDataInput {
 	if (!data) return false;
 	if (!data.sessionId || "string" !== typeof data.sessionId) return false;
 	if (!data.results || !Array.isArray(data.results)) return false;
-	if (-1 < data.results.findIndex((e) => [0, 1].includes(e))) return false;
+	if (-1 < data.results.findIndex((e) => ![0, 1].includes(e))) return false;
 	return true;
 }
 
