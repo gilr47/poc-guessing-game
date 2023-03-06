@@ -5,6 +5,7 @@ import { DB_PATH } from "../consts";
 
 export function getDBInstance()  { 
 	const database = new sqlite3.Database(DB_PATH);
+	database.run("PRAGMA foreign_keys = ON;");
 	return database;
 }
 
@@ -12,15 +13,17 @@ export function getDBInstance()  {
 export default function isSessionGuidValid(guid: string): Promise<boolean> { 
 	return new Promise((resolve, reject) => { 
 		const db = getDBInstance();
-		db.get(SqlString.format(`SELECT rowId FROM uuids WHERE id = ?`, [guid]), (err, row) => { 
-			if (err) { 
-				reject(err);
-			} else if (!row) {
-				resolve(false);
-			} else {
-				resolve(true);
-			}
-			db.close();
+		db.serialize(() => { 
+			db.get(SqlString.format(`SELECT rowId FROM uuids WHERE id = ?`, [guid]), (err, row) => { 
+				if (err) { 
+					reject(err);
+				} else if (!row) {
+					resolve(true);
+				} else {
+					resolve(false);
+				}
+				db.close();
+			});
 		});
 	});
 }

@@ -18,8 +18,9 @@ export default function reportData(req: Request, res: Response) {
 	}
 	const { sessionId, results } = body;
 	const db = getDBInstance();
-	db.run(SqlString.format("INSERT INTO sessionResults VALUES(sessionId, score) VALUES(?, ?)", [sessionId, sum(...results)]), (err) => { 
+	db.run(SqlString.format("INSERT INTO sessionResults(sessionId, score) VALUES(?, ?)", [sessionId, sum(...results)]), (err) => { 
 		if (err) {
+			console.log(err);
 			res.status(500).json(INTERNAL_SERVER_ERROR)
 		} else {
 			res.status(200).json({});

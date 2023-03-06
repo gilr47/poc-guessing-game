@@ -1,21 +1,46 @@
 import { join } from "path";
-import { readFile } from "fs-extra";
+import { readdir, readFile } from "fs-extra";
 import sqlite3 from "sqlite3";
 import { DB_PATH } from "../consts";
 
 
+
 export default function dbInitialize() {
-	return new Promise((prResolve, prReject) =>  {
+	return new Promise<unknown[]>((prResolve, prReject) =>  {
+		const dbResArr: any[] = [];
+		const dbRejectArr: any[] = [];
 		const db = new sqlite3.Database(DB_PATH);
-		readFile(join(__dirname, "schema.sql"), { encoding: "utf8" }).then((schema) => {
-			db.run(schema, (dbRes, dbErr) => { 
-				if (dbErr) {
-					prReject(dbErr);
-				} else {
-					prResolve(dbRes);
-				}
+		const schemePath = join(__dirname, "scheme");
+		db.serialize(() => { 
+			readdir(schemePath).then((entries) => { 
+				Promise.all(
+					entries
+						.filter((file) => file.endsWith(".sql"))
+						.map((file) => {
+							return new Promise((innerResolve, innerReject) => { 
+								readFile(join(schemePath, file), { encoding: "utf8" })
+									.then((tblCreationSql) => {
+										innerResolve(tblCreationSql);
+										db.run(tblCreationSql, (dbRes, dbErr) => { 
+											if (dbErr) {
+												dbRejectArr.push(dbErr);
+												innerReject(dbErr);
+											} else {
+												dbResArr.push(dbRes);
+												innerResolve(dbRes);
+											}
+										});
+								});
+							});
+					})).then(() => { 
+						db.close();
+						if (0 < dbRejectArr.length) {
+							prReject(dbRejectArr);
+						} else {
+							prResolve(dbResArr);
+						}
+					});
 			});
-			db.close();
-		})
+		});
 	});
 }

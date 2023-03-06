@@ -1,0 +1,4 @@
+CREATE TABLE `sessions` (
+	id VARCHAR(32) NOT NULL PRIMARY KEY UNIQUE,
+	username TEXT NOT NULL
+);
