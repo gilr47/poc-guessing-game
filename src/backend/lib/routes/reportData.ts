@@ -4,28 +4,37 @@ import SqlString from "sqlstring";
 import { getDBInstance } from "../db/helpers";
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../errors";
 
-const sum = (...arrOfNumbers: (0 | 1)[]) => {
-	let returnVal = 0;
-	for (const n of arrOfNumbers) {
-		returnVal += n;
-	}
-	return returnVal;
-}
 export default function reportData(req: Request, res: Response) {
 	const { body } = req;
 	if (!guardReportDataInput(body)) {
 		return res.status(400).json(BAD_REQUEST);
 	}
-	const { sessionId, results } = body;
+	const { sessionId } = body;
 	const db = getDBInstance();
-	db.run(SqlString.format("INSERT INTO sessionResults(sessionId, score) VALUES(?, ?)", [sessionId, sum(...results)]), (err) => { 
+	db.get(SqlString.format("SELECT rowId FROM sessionResults WHERE sessionId = ?", [sessionId]), (err, row) => { 
 		if (err) {
 			console.log(err);
 			res.status(500).json(INTERNAL_SERVER_ERROR)
 		} else {
-			res.status(200).json({});
+			if (!row) {
+				db.run(SqlString.format("INSERT INTO sessionResults(sessionId, steps) VALUES(?, ?)", [sessionId, 1]), (err) => { 
+					if (err) {
+						res.status(500).json(INTERNAL_SERVER_ERROR)
+					} else {
+						res.status(200).json({});
+					}
+					db.close();
+				});
+			} else {
+				db.run(SqlString.format("UPDATE sessionResults SET steps = steps + 1 WHERE sessionId = ?", [sessionId]), (err) => { 
+					if (err) {
+						res.status(500).json(INTERNAL_SERVER_ERROR)
+					} else {
+						res.status(200).json({});
+					}
+					db.close();
+				});
+			}
 		}
-		db.close();
 	});
-	
 }

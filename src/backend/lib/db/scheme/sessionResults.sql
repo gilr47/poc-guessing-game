@@ -1,5 +1,5 @@
 CREATE TABLE `sessionResults` (
-	score INTEGER NOT NULL,
+	steps INTEGER NOT NULL,
 	sessionId VARCHAR(32) NOT NULL UNIQUE,
 	CONSTRAINT fk_sessionId
 	FOREIGN KEY (sessionId)
