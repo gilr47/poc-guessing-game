@@ -1,0 +1,64 @@
+.mainCs {
+	width:100%;
+	height:100%;
+	position:relative;
+	border: 4px solid #000;
+}
+
+.mainCs > h1 { 
+	text-align: center;
+}
+
+.mainCs > header { 
+	width:100%;
+	display:flex;
+}
+
+.mainCs > header > a {
+	
+	width:50%;
+	font-size:64px;
+	text-decoration: none;
+	color:#000;
+	text-align:center;
+	height:140px;
+	border-bottom: 2px #1d1d1d solid;
+	border-top: 2px #1d1d1d solid;
+	display:flex;
+	transition: background 0.2s linear;
+
+} 
+.mainCs > header > a:nth-child(1) {
+	border-right: 2px #1d1d1d solid;
+}
+.mainCs > header > a:hover {
+	background:#efefef;
+}
+.mainCs > header > a > span {
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	text-transform: capitalize;
+	margin-top:auto;
+	margin-bottom:auto;
+} 
+
+.bottom {
+	position:fixed;
+	width:100%;
+	height:50px;
+	bottom:0px;
+	display:flex;
+	flex-direction: column;
+}
+
+.bottom div {
+	width:400px;
+	height:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.bottom div h6 {
+	color:#fff;
+	text-align:center;
+}

@@ -3,7 +3,6 @@
 	"main": "./lib/index.ts",
 	"private": true,
 	"scripts": {
-		"bootstrap": "lerna bootstrap --ignore-scripts"
 	},
 	"dependencies": {
 

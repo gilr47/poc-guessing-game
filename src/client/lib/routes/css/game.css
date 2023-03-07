@@ -1,0 +1,26 @@
+.csMain {
+
+}
+
+.gameWaitingForKey {
+	position: relative;
+}
+
+.indicator {
+	position: absolute;
+	width: 30px; height: 30px;
+	background:#000;
+	border-radius: 100% 100%;
+	top: 5px;
+}
+
+.gameWaitingForKey h1 {
+	text-align:center;
+}
+.left {
+	left: 5px;
+}
+
+.right {
+	right: 5px;
+}

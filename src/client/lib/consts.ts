@@ -1,0 +1,1 @@
+export const GAME_DURATION_MS = 1000;
