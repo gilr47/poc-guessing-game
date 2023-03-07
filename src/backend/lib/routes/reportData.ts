@@ -13,7 +13,6 @@ export default function reportData(req: Request, res: Response) {
 	const db = getDBInstance();
 	db.get(SqlString.format("SELECT rowId FROM sessionResults WHERE sessionId = ?", [sessionId]), (err, row) => { 
 		if (err) {
-			console.log(err);
 			res.status(500).json(INTERNAL_SERVER_ERROR)
 		} else {
 			if (!row) {
