@@ -4,7 +4,9 @@ import sqlite3 from "sqlite3";
 import { DB_PATH } from "../consts";
 
 
-
+/**
+ * this function will asynchrounsly build the database, according to the scheme sql files in the scheme folder 
+ */
 export default function dbInitialize() {
 	return new Promise<unknown[]>((prResolve, prReject) =>  {
 		const dbResArr: any[] = [];

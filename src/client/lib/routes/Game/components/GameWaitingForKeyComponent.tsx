@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { GAME_DURATION_MS } from "../../../consts";
 import { GameStatus, GameWaitingForKeyComponentProps } from "../../../types";
 import { getRandomInt } from "../../../utils";
-
+/**
+ * A Component for showing the indicator, setting the logic of which side the on screen indicator will show
+ */
 export default function GameWaitingForKeyComponent({ setGameStatus, css, preSelectedKey, setPreSelectedKey }: GameWaitingForKeyComponentProps) {
 	useEffect(() => { 
 		if (!preSelectedKey) {

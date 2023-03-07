@@ -3,6 +3,9 @@ import { Request, Response } from "express";
 import { getDBInstance } from "../db/helpers";
 import { INTERNAL_SERVER_ERROR } from "../errors";
 
+/**
+ * the leaderboards route will return the maximal steps a user has reached, accross multiple sessions
+ */
 export default function leaderboards(req: Request, res: Response) {
 	//RETURN ALL user scores, sorted by highest scores. 
 	if (!req) return ;

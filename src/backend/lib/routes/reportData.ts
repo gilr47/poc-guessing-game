@@ -4,6 +4,10 @@ import SqlString from "sqlstring";
 import { getDBInstance } from "../db/helpers";
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../errors";
 
+/**
+ * the reportData route will insert a new session to the sessionResults table, or update an existing one
+ * indexed by sessionId
+ */
 export default function reportData(req: Request, res: Response) {
 	const { body } = req;
 	if (!guardReportDataInput(body)) {

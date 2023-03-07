@@ -4,6 +4,9 @@ import SqlString from "sqlstring";
 import { getDBInstance, getValidDBUUID } from "../db/helpers";
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../errors";
 
+/**
+ * the startSession route will create a new session in the database
+ */
 export default async function startSession(req: Request, res: Response) {
 	const { query } = req;
 	if (!guardStartSessionInput(query)) {
